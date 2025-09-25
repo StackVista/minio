@@ -5,7 +5,7 @@ go 1.24
 toolchain go1.24.6
 
 require (
-	cloud.google.com/go v0.39.0
+	cloud.google.com/go/storage v1.30.1
 	git.apache.org/thrift.git v0.13.0
 	github.com/Azure/azure-pipeline-go v0.2.2
 	github.com/Azure/azure-storage-blob-go v0.10.0
@@ -14,7 +14,7 @@ require (
 	github.com/alecthomas/participle v0.2.1
 	github.com/bcicen/jstream v1.0.1
 	github.com/beevik/ntp v0.3.0
-	github.com/cespare/xxhash/v2 v2.1.1
+	github.com/cespare/xxhash/v2 v2.2.0
 	github.com/cheggaaa/pb v1.0.29
 	github.com/colinmarc/hdfs/v2 v2.2.0
 	github.com/coredns/coredns v1.4.0
@@ -29,7 +29,7 @@ require (
 	github.com/go-ldap/ldap/v3 v3.2.4
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gomodule/redigo v1.8.3
-	github.com/google/uuid v1.1.2
+	github.com/google/uuid v1.3.1
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/hashicorp/vault/api v1.0.4
@@ -76,23 +76,27 @@ require (
 	github.com/valyala/tcplisten v0.0.0-20161114210144-ceec8f93295a
 	github.com/willf/bloom v2.0.3+incompatible
 	github.com/xdg/scram v0.0.0-20180814205039-7eeb5667e42c
-	go.etcd.io/etcd v0.5.0-alpha.5.0.20190108173120-83c051b701d3
-	go.uber.org/zap v1.13.0
+	go.etcd.io/etcd/api/v3 v3.5.13
+	go.etcd.io/etcd/client/v3 v3.5.13
+	go.uber.org/zap v1.17.0
 	golang.org/x/crypto v0.36.0
 	golang.org/x/net v0.38.0
 	golang.org/x/sys v0.31.0
-	google.golang.org/api v0.5.0
-	gopkg.in/yaml.v2 v2.3.0
+	google.golang.org/api v0.126.0
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
+	cloud.google.com/go v0.110.7 // indirect
+	cloud.google.com/go/compute v1.23.0 // indirect
+	cloud.google.com/go/compute/metadata v0.2.3 // indirect
+	cloud.google.com/go/iam v1.1.1 // indirect
 	github.com/Azure/go-autorest/autorest/adal v0.9.1 // indirect
 	github.com/Azure/go-ntlmssp v0.0.0-20200615164410-66371956d46c // indirect
-	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/coreos/go-systemd v0.0.0-20180511133405-39ca1b05acc7 // indirect
-	github.com/coreos/pkg v0.0.0-20160727233714-3ac0863d7acf // indirect
+	github.com/coreos/go-semver v0.3.0 // indirect
+	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/eapache/go-resiliency v1.2.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
@@ -101,10 +105,13 @@ require (
 	github.com/go-asn1-ber/asn1-ber v1.5.1 // indirect
 	github.com/go-ole/go-ole v1.2.4 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/groupcache v0.0.0-20190702054246-869f871628b6 // indirect
-	github.com/golang/protobuf v1.4.3 // indirect
-	github.com/golang/snappy v0.0.1 // indirect
-	github.com/googleapis/gax-go/v2 v2.0.4 // indirect
+	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
+	github.com/golang/protobuf v1.5.4 // indirect
+	github.com/golang/snappy v0.0.4 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/google/s2a-go v0.1.4 // indirect
+	github.com/googleapis/enterprise-certificate-proxy v0.2.3 // indirect
+	github.com/googleapis/gax-go/v2 v2.11.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.1 // indirect
@@ -143,26 +150,25 @@ require (
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/willf/bitset v1.1.11 // indirect
 	github.com/xdg/stringprep v1.0.0 // indirect
-	go.opencensus.io v0.22.5 // indirect
-	go.uber.org/atomic v1.5.0 // indirect
-	go.uber.org/multierr v1.3.0 // indirect
-	go.uber.org/tools v0.0.0-20190618225709-2cfd321de3ee // indirect
-	golang.org/x/lint v0.0.0-20190930215403-16217165b5de // indirect
-	golang.org/x/mod v0.17.0 // indirect
-	golang.org/x/oauth2 v0.0.0-20190226205417-e64efc72b421 // indirect
+	go.etcd.io/etcd/client/pkg/v3 v3.5.13 // indirect
+	go.opencensus.io v0.24.0 // indirect
+	go.uber.org/atomic v1.7.0 // indirect
+	go.uber.org/multierr v1.6.0 // indirect
+	golang.org/x/oauth2 v0.11.0 // indirect
 	golang.org/x/sync v0.12.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
-	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect
-	google.golang.org/appengine v1.4.0 // indirect
-	google.golang.org/genproto v0.0.0-20190819201941-24fa4b261c55 // indirect
-	google.golang.org/grpc v1.26.0 // indirect
-	google.golang.org/protobuf v1.26.0-rc.1 // indirect
+	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
+	google.golang.org/appengine v1.6.7 // indirect
+	google.golang.org/genproto v0.0.0-20230822172742-b8732ec3820d // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20230822172742-b8732ec3820d // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20230822172742-b8732ec3820d // indirect
+	google.golang.org/grpc v1.59.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/ini.v1 v1.57.0 // indirect
 	gopkg.in/jcmturner/aescts.v1 v1.0.1 // indirect
 	gopkg.in/jcmturner/dnsutils.v1 v1.0.1 // indirect
 	gopkg.in/jcmturner/gokrb5.v7 v7.5.0 // indirect
 	gopkg.in/jcmturner/rpc.v1 v1.1.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.3.1 // indirect
-	honnef.co/go/tools v0.0.1-2019.2.3 // indirect
 )
