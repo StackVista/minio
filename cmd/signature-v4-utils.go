@@ -130,6 +130,11 @@ func checkKeyValid(accessKey string) (auth.Credentials, bool, APIErrorCode) {
 		}
 		owner = false
 	}
+	// Service accounts must always be validated with a session token.
+	// Reject bare access-key usage for service accounts.
+	if cred.IsServiceAccount() {
+		return cred, owner, ErrInvalidToken
+	}
 	return cred, owner, ErrNone
 }
 

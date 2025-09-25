@@ -62,7 +62,8 @@ func getChunkSignature(cred auth.Credentials, seedSignature string, region strin
 }
 
 // calculateSeedSignature - Calculate seed signature in accordance with
-//     - http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-streaming.html
+//   - http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-streaming.html
+//
 // returns signature, error otherwise if the signature mismatches or any other
 // error while parsing and validating.
 func calculateSeedSignature(r *http.Request) (cred auth.Credentials, signature string, region string, date time.Time, errCode APIErrorCode) {
@@ -154,6 +155,12 @@ var errMalformedEncoding = errors.New("malformed chunked encoding")
 // NewChunkedReader is not needed by normal applications. The http package
 // automatically decodes chunking when reading response bodies.
 func newSignV4ChunkedReader(req *http.Request) (io.ReadCloser, APIErrorCode) {
+	// Reject unsigned-trailer uploads. If client indicates trailers but did not
+	// sign them as part of the payload, this can lead to signature bypass.
+	// Only allow when X-Amz-Trailer is absent.
+	if req.Header.Get(xhttp.AmzTrailer) != "" {
+		return nil, ErrSignatureDoesNotMatch
+	}
 	cred, seedSignature, region, seedDate, errCode := calculateSeedSignature(req)
 	if errCode != ErrNone {
 		return nil, errCode
@@ -409,7 +416,8 @@ const s3ChunkSignatureStr = ";chunk-signature="
 
 // parses3ChunkExtension removes any s3 specific chunk-extension from buf.
 // For example,
-//     "10000;chunk-signature=..." => "10000", "chunk-signature=..."
+//
+//	"10000;chunk-signature=..." => "10000", "chunk-signature=..."
 func parseS3ChunkExtension(buf []byte) ([]byte, []byte) {
 	buf = trimTrailingWhitespace(buf)
 	semi := bytes.Index(buf, []byte(s3ChunkSignatureStr))
