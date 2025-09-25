@@ -1,6 +1,8 @@
 module github.com/minio/minio
 
-go 1.22
+go 1.24
+
+toolchain go1.24.6
 
 require (
 	cloud.google.com/go v0.39.0
@@ -76,9 +78,9 @@ require (
 	github.com/xdg/scram v0.0.0-20180814205039-7eeb5667e42c
 	go.etcd.io/etcd v0.5.0-alpha.5.0.20190108173120-83c051b701d3
 	go.uber.org/zap v1.13.0
-	golang.org/x/crypto v0.31.0
-	golang.org/x/net v0.25.0
-	golang.org/x/sys v0.28.0
+	golang.org/x/crypto v0.36.0
+	golang.org/x/net v0.38.0
+	golang.org/x/sys v0.31.0
 	google.golang.org/api v0.5.0
 	gopkg.in/yaml.v2 v2.3.0
 )
@@ -148,8 +150,8 @@ require (
 	golang.org/x/lint v0.0.0-20190930215403-16217165b5de // indirect
 	golang.org/x/mod v0.17.0 // indirect
 	golang.org/x/oauth2 v0.0.0-20190226205417-e64efc72b421 // indirect
-	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/sync v0.12.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
 	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect
 	google.golang.org/appengine v1.4.0 // indirect
