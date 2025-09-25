@@ -28,6 +28,7 @@ require (
 	github.com/fatih/structs v1.1.0
 	github.com/go-ldap/ldap/v3 v3.2.4
 	github.com/go-sql-driver/mysql v1.5.0
+	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/gomodule/redigo v1.8.3
 	github.com/google/uuid v1.3.1
 	github.com/gorilla/handlers v1.5.1
