@@ -598,26 +598,10 @@ func (a adminAPIHandlers) UpdateServiceAccount(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	// Only users with UpdateServiceAccountAdminAction may edit service accounts.
-	if !globalIAMSys.IsAllowed(iampolicy.Args{
-		AccountName:     cred.AccessKey,
-		Action:          iampolicy.UpdateServiceAccountAdminAction,
-		ConditionValues: getConditionValues(r, "", cred.AccessKey, claims),
-		IsOwner:         owner,
-		Claims:          claims,
-	}) {
-		// Fallback: allow parent user to edit their own service accounts
-		// to maintain backward compatibility.
-		requestUser := cred.AccessKey
-		if cred.ParentUser != "" {
-			requestUser = cred.ParentUser
-		}
-
-		svcAccount, _, err := globalIAMSys.GetServiceAccount(ctx, mux.Vars(r)["accessKey"])
-		if err != nil || requestUser != svcAccount.ParentUser {
-			writeErrorResponseJSON(ctx, w, errorCodes.ToAPIErr(ErrAccessDenied), r.URL)
-			return
-		}
+	// Disallow editing service accounts by root user.
+	if owner {
+		writeErrorResponseJSON(ctx, w, errorCodes.ToAPIErr(ErrAdminAccountNotEligible), r.URL)
+		return
 	}
 
 	svcAccount, _, err := globalIAMSys.GetServiceAccount(ctx, accessKey)

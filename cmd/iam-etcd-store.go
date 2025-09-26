@@ -27,14 +27,14 @@ import (
 	"time"
 	"unicode/utf8"
 
-	jwtgo "github.com/golang-jwt/jwt/v4"
+	jwtgo "github.com/dgrijalva/jwt-go"
 	"github.com/minio/minio-go/v7/pkg/set"
 	"github.com/minio/minio/cmd/logger"
 	"github.com/minio/minio/pkg/auth"
 	iampolicy "github.com/minio/minio/pkg/iam/policy"
 	"github.com/minio/minio/pkg/madmin"
-	"go.etcd.io/etcd/api/v3/mvccpb"
-	etcd "go.etcd.io/etcd/client/v3"
+	etcd "go.etcd.io/etcd/clientv3"
+	"go.etcd.io/etcd/mvcc/mvccpb"
 )
 
 var defaultContextTimeout = 30 * time.Second
@@ -50,11 +50,10 @@ func etcdKvsToSet(prefix string, kvs []*mvccpb.KeyValue) set.StringSet {
 
 // Extract path string by stripping off the `prefix` value and the suffix,
 // value, usually in the following form.
-//
-//	s := "config/iam/users/foo/config.json"
-//	prefix := "config/iam/users/"
-//	suffix := "config.json"
-//	result is foo
+//  s := "config/iam/users/foo/config.json"
+//  prefix := "config/iam/users/"
+//  suffix := "config.json"
+//  result is foo
 func extractPathPrefixAndSuffix(s string, prefix string, suffix string) string {
 	return pathClean(strings.TrimSuffix(strings.TrimPrefix(string(s), prefix), suffix))
 }

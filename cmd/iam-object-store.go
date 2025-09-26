@@ -27,7 +27,7 @@ import (
 	"time"
 	"unicode/utf8"
 
-    jwtgo "github.com/golang-jwt/jwt/v4"
+	jwtgo "github.com/dgrijalva/jwt-go"
 
 	"github.com/minio/minio/cmd/logger"
 	"github.com/minio/minio/pkg/auth"
