@@ -27,7 +27,7 @@ import (
 	"strings"
 	"time"
 
-	jwtgo "github.com/golang-jwt/jwt/v4"
+	jwtgo "github.com/dgrijalva/jwt-go"
 	"github.com/minio/minio/cmd/jwt"
 )
 

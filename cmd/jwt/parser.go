@@ -31,7 +31,7 @@ import (
 	"sync"
 	"time"
 
-    jwtgo "github.com/golang-jwt/jwt/v4"
+	jwtgo "github.com/dgrijalva/jwt-go"
 	jsoniter "github.com/json-iterator/go"
 )
 

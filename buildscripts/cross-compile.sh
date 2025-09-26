@@ -37,7 +37,7 @@ function _build() {
 
     # go build -trimpath to build the binary.
     if [ "${CAN_BUILD_WITHOUT_DOCKER}" == "false" ]; then
-      docker run --name runner -d -v $PWD:$PWD --workdir $PWD golang:1.24.6 sleep infinity
+      docker run --name runner -d -v $PWD:$PWD --workdir $PWD golang:1.22 sleep infinity
       docker exec -t runner git config --global --add safe.directory $PWD
       docker exec -t runner go build -trimpath -tags kqueue --ldflags "${LDFLAGS}" -o "./bin/minio_${os}_${arch}" 1>/dev/null
       MUID=$(id -u)
